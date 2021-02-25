@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="test_robot">
+
+<joint name="base_link_to" type="fixed">
+  <parent link="base_link"/>
+  <child link="servo_00"/>
+  <origin xyz="0.0 0.0 0.0" rpy="0 0 1.57" />
+</joint>
+
+  <joint name="joint_00" type="revolute">
+    <parent link="servo_00"/>
+    <child link="link_00"/>
+    <limit lower="-2.61" upper="2.61" effort="0" velocity="10"/>
+    <axis xyz="0 0 1"/>
+    <origin xyz="0.0 0.0 0.019" rpy="0 0 1.57" />
+  </joint>
+
+  <joint name="link_fixed_00" type="fixed">
+    <parent link="link_00"/>
+    <child link="servo_01"/>
+    <origin xyz="0.0 0.0 0.042" rpy="0 0 0" />
+  </joint>
+
+
+  <joint name="joint_01" type="revolute">
+    <parent link="servo_01"/>
+    <child link="link_01"/>
+    <limit lower="-1.57" upper="1.57" effort="0" velocity="10"/>
+    <axis xyz="0 -1 0"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+  </joint>
+
+  <joint name="link_fixed_01" type="fixed">
+    <parent link="link_01"/>
+    <child link="link_02"/>
+    <origin xyz="0.008 0 0.025" rpy="0 0 0" />
+  </joint>
+
+  <joint name="link_fixed_02" type="fixed">
+    <parent link="link_02"/>
+    <child link="servo_02"/>
+    <origin xyz="0.025 0 0.022" rpy="0 0 0" />
+  </joint>
+
+  <joint name="joint_02" type="revolute">
+    <parent link="servo_02"/>
+    <child link="link_03"/>
+    <limit lower="-1.57" upper="1.57" effort="0" velocity="10"/>
+    <axis xyz="0 -1 0"/>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+
+  <joint name="link_fixed_03" type="fixed">
+    <parent link="link_03"/>
+    <child link="link_03a"/>
+    <origin xyz="0 0 0.0" rpy="0 0 0" />
+  </joint>
+
+  <joint name="joint_03" type="revolute">
+    <parent link="link_03a"/>
+    <child link="servo_03"/>
+    <limit lower="-1.57" upper="1.57" effort="0" velocity="10"/>
+    <axis xyz="0 1 0"/>
+    <origin xyz="0.05 0.0 0" rpy="0 0 0" />
+  </joint>
+
+  <joint name="link_fixed_04" type="fixed">
+    <parent link="servo_03"/>
+    <child link="link_03b"/>
+    <origin xyz="0.02 0 -0.022" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="gripper_fixed" type="fixed">
+    <parent link="link_03b"/>
+    <child link="gripper"/>
+    <origin xyz="0.045 0.0 0.0" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="end" type="fixed">
+    <parent link="gripper" />
+    <child link="end"/>
+    <origin xyz="0.043 0.0 0.0" rpy="0 0 0"/>
+  </joint>
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0"/>
+    <inertia ixx="0."  ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+  </inertial>
+</link>
+
+<link name="servo_00">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.053"/>
+    <inertia ixx="0.001"  ixy="0"  ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+  </inertial>
+  <collision name="servo_00_collision">
+    <origin xyz="0 0 0" rpy="1.57 0 0" />
+    <geometry>
+      <mesh filename="arm_stl/ax12.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+  <visual>
+    <origin xyz="0 0 0" rpy="1.57 0 0" />
+    <geometry>
+      <mesh filename="arm_stl/ax12.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="light_blue">
+      <color rgba="1 0 0 1"/>
+    </material>
+  </visual>
+</link>
+
+<link name="servo_01">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.053"/>
+    <inertia ixx="0.001"  ixy="0"  ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+  </inertial>
+  <collision name="servo_01_collision">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <mesh filename="arm_stl/ax12.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <mesh filename="arm_stl/ax12.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="light_blue">
+      <color rgba="0.658 0.658 0.658 1"/>
+    </material>
+  </visual>
+</link>
+
+<link name="servo_02">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.053"/>
+    <inertia ixx="0.001"  ixy="0"  ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+  </inertial>
+  <collision name="servo_02_collision">
+    <origin xyz="0 0 0" rpy="0 1.57 0" />
+    <geometry>
+      <mesh filename="arm_stl/ax12.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 1.57 0" />
+    <geometry>
+      <mesh filename="arm_stl/ax12.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="light_blue">
+      <color rgba="0.658 0.658 0.658 1"/>
+    </material>
+  </visual>
+</link>
+
+<link name="servo_03">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.053"/>
+    <inertia ixx="0.001"  ixy="0"  ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+  </inertial>
+  <collision name="servo_03_collision">
+    <origin xyz="0 0 0" rpy="0 -1.57 0" />
+    <geometry>
+      <mesh filename="arm_stl/ax12.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 -1.57 0" />
+    <geometry>
+      <mesh filename="arm_stl/ax12.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="light_blue">
+      <color rgba="0.658 0.658 0.658 1"/>
+    </material>
+  </visual>
+</link>
+
+<link name="link_00">
+  <inertial>
+    <origin xyz="0 0 -0.0" rpy="0 0 0"/>
+    <mass value="0.001"/>
+    <inertia ixx="0.001"  ixy="0"  ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+  </inertial>
+  <collision name="link_00_collision">
+    <origin xyz="0 0 0" rpy="0 3.14 0" />
+    <geometry>
+      <mesh filename="arm_stl/F3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 3.14 0" />
+    <geometry>
+      <mesh filename="arm_stl/F3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="light_blue">
+      <color rgba="0.658 0.658 0.658 1"/>
+    </material>
+  </visual>
+</link>
+
+<link name="link_01">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.001"/>
+    <inertia ixx="0.001"  ixy="0"  ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+  </inertial>
+  <collision name="link_01_collision">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <mesh filename="arm_stl/F2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <mesh filename="arm_stl/F2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="light_blue">
+      <color rgba="0.658 0.658 0.658 1"/>
+    </material>
+  </visual>
+</link>
+
+<link name="link_02">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.001"/>
+    <inertia ixx="0.001"  ixy="0"  ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+  </inertial>
+  <collision name="link_02_collision">
+    <origin xyz="0 0 0" rpy="0 3.14 0" />
+    <geometry>
+      <mesh filename="arm_stl/F3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 3.14 0" />
+    <geometry>
+      <mesh filename="arm_stl/F3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="light_blue">
+      <color rgba="0.658 0.658 0.658 1"/>
+    </material>
+  </visual>
+</link>
+
+<link name="link_03">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.001"/>
+    <inertia ixx="0.001"  ixy="0"  ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+  </inertial>
+  <collision name="link_03_collision">
+    <origin xyz="0 0 0" rpy="0 1.57 0" />
+    <geometry>
+      <mesh filename="arm_stl/F2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+  <visual>
+    <origin xyz="0.0 0 0" rpy="0 1.57 0" />
+    <geometry>
+      <mesh filename="arm_stl/F2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="light_blue">
+      <color rgba="0.658 0.658 0.658 1"/>
+    </material>
+  </visual>
+</link>
+
+<link name="link_03a">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.001"/>
+    <inertia ixx="0.001"  ixy="0"  ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+  </inertial>
+  <collision name="link_03a_collision">
+    <origin xyz="0.05 0 0" rpy="0 -1.57 0" />
+    <geometry>
+      <mesh filename="arm_stl/F2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+  <visual>
+    <origin xyz="0.05 0 0" rpy="0 -1.57 0" />
+    <geometry>
+      <mesh filename="arm_stl/F2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="light_blue">
+      <color rgba="0.658 0.658 0.658 1"/>
+    </material>
+  </visual>
+</link>
+
+<link name="link_03b">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.001"/>
+    <inertia ixx="0."  ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+  </inertial>
+  <collision name="link_03b_collision">
+    <origin xyz="0 0 0" rpy="0 3.14 0" />
+    <geometry>
+      <mesh filename="arm_stl/F3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+  <visual>
+    <origin xyz="0 0 0 " rpy="0 3.14 0" />
+    <geometry>
+      <mesh filename="arm_stl/F3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="light_gray">
+<color rgba="0.658 0.658 0.658 1"/>
+    </material>
+  </visual>
+</link>
+
+<link name="gripper">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.056"/>
+    <inertia ixx="0."  ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+  </inertial>
+  <collision name="gripper_collision">
+    <origin xyz="0 0.025 0" rpy="0 0 0" />
+    <geometry>
+      <mesh filename="arm_stl/gripper.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+   <visual>
+      <geometry>
+        <mesh filename="arm_stl/gripper.stl"/>
+      </geometry>
+        <origin xyz = "0 0.025 0" rpy = "0 0 0" />
+    <material name = "black">
+      <color rgba="0.658 0.658 0.658 1"/>
+    </material>
+  </visual>
+</link>
+
+<link name="end">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0"/>
+    <inertia ixx="0."  ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+  </inertial>
+   <visual>
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+        <origin xyz = "0 0 0" rpy = "0 0 0" />
+     <material name = "red">
+      <color rgba="1 0 0 1"/>
+     </material>
+   </visual>
+</link>
+
+</robot>
